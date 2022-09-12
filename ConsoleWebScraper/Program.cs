@@ -32,9 +32,10 @@ internal class Program
             }
         }
         string weather = _stringBuilder.ToString();
-        weather = Regex.Replace(weather, "[æ ø å a-z] {3} \\s [0-9] {2} : [0-9] {2}", "");
-        weather = Regex.Replace(weather, "\\s °C", "°C;");
-        weather = Regex.Replace(weather, "[*]\\s", "");
+        weather = Regex.Replace(weather, "<[æ ø å a-z A-Z> 0-9 \" / = . -]*>", "");
+        weather = Regex.Replace(weather, "&nbsp;°C", "°C;");
+        weather = Regex.Replace(weather, "[0-9]{2}:[0-9]{2}", "");
+        weather = Regex.Replace(weather, "\\s[*][æ ø å a-z A-Z]{3}", "");
 
         string[] stringArrayForPrinting = weather.Split(';');
 
